@@ -1,0 +1,8 @@
+{
+  "label": "Home Assistant",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "home-assistant/intro"
+  }
+}

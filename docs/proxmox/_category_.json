@@ -1,0 +1,8 @@
+{
+  "label": "Proxmox",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "proxmox/intro"
+  }
+}

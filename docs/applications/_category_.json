@@ -1,0 +1,8 @@
+{
+  "label": "Applications",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "applications/intro"
+  }
+}
