@@ -121,7 +121,7 @@ export default function Home() {
 
             <Link
               className={`${styles.socialButton} ${styles.githubButton}`}
-              href="https://github.com/scar13t-tech"
+              href="https://github.com/orgs/scar13t-tech/repositories"
             >
               <img
                 src="/img/github.png"
