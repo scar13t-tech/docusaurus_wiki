@@ -1,12 +1,8 @@
 // @ts-check
 // `@type` JSDoc annotations allow editor autocompletion and type checking
 // (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
 
 import {themes as prismThemes} from 'prism-react-renderer';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -14,27 +10,18 @@ const config = {
   tagline: 'Homelab Guides, Tutorials, and Documentation',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: 'https://docs.scar13t.uk',
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'scar13t-tech', // Usually your GitHub org/user name.
-  projectName: 'docusaurus_wiki', // Usually your repo name.
+  organizationName: 'scar13t-tech',
+  projectName: 'docusaurus_wiki',
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -43,14 +30,11 @@ const config = {
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/scar13t-tech/docusaurus_wiki/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -58,11 +42,8 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
+            'https://github.com/scar13t-tech/docusaurus_wiki/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -74,18 +55,31 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        indexDocs: true,
+        indexBlog: true,
+        docsRouteBasePath: '/docs',
+      },
+    ],
+  ],
+
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+
       colorMode: {
         respectPrefersColorScheme: true,
       },
+
       navbar: {
         title: 'Scar13t Docs',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Scar13t Tech',
           src: 'img/logo.svg',
         },
         items: [
@@ -95,22 +89,34 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+
           {
-            href: 'https://github.com/facebook/docusaurus',
+            to: '/blog',
+            label: 'Blog',
+            position: 'left',
+          },
+
+          {
+            type: 'search',
+            position: 'right',
+          },
+
+          {
+            href: 'https://github.com/scar13t-tech',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
+
       footer: {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Docs Home',
                 to: '/docs/intro',
               },
             ],
@@ -120,23 +126,27 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/6JtMybEVEN',
+              },
+              {
+                label: 'YouTube',
+                href: 'https://youtube.com/@Scar13tTech',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'Links',
             items: [
-
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/scar13t-tech',
               },
             ],
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Scar13t Tech`,
       },
+
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,

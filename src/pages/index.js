@@ -131,20 +131,6 @@ export default function Home() {
               GitHub
             </Link>
           </div>
-
-          <div className={styles.searchSection}>
-            <input
-              className={styles.searchInput}
-              type="text"
-              placeholder="Search documentation..."
-              disabled
-            />
-
-            <p>
-              Search will be enabled once local documentation search is
-              configured.
-            </p>
-          </div>
         </section>
 
         {/* Categories */}
