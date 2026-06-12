@@ -130,7 +130,7 @@ const config = {
               },
               {
                 label: 'YouTube',
-                href: 'https://youtube.com/@Scar13tTech',
+                href: 'https://www.youtube.com/@Scar13t_Tech',
               },
             ],
           },
