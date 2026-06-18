@@ -99,7 +99,7 @@ navbar: {
             items: [
               {
                 label: 'Docs Home',
-                to: '/docs/intro',
+                to: '/docs/applications/prowlarr',
               },
             ],
           },
