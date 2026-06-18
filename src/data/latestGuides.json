@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Prowlarr",
+    "description": "Prowlarr is an indexer manager used with applications like Sonarr, Radarr, Lidarr, and Readarr.",
+    "link": "/docs/applications/prowlarr",
+    "updated": "2026-06-18T17:23:54.407Z"
+  },
+  {
+    "title": "Proxmox",
+    "description": "Guides for virtualization, containers, networking, and homelab infrastructure.",
+    "link": "/docs/proxmox/intro",
+    "updated": "2026-06-17T14:49:59.560Z"
+  },
+  {
+    "title": "Home Assistant",
+    "description": "Guides for smart home automation, integrations, and dashboards.",
+    "link": "/docs/home-assistant/intro",
+    "updated": "2026-06-11T23:03:43.159Z"
+  }
+]

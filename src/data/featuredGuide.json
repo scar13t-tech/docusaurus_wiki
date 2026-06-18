@@ -1,0 +1,6 @@
+{
+  "title": "Prowlarr",
+  "description": "Indexer management for Sonarr, Radarr, Lidarr, and Readarr.",
+  "link": "/docs/applications/prowlarr",
+  "image": "/img/prowlarr.png"
+}

@@ -36,18 +36,6 @@ const config = {
           editUrl:
             'https://github.com/scar13t-tech/docusaurus_wiki/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          editUrl:
-            'https://github.com/scar13t-tech/docusaurus_wiki/tree/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -76,38 +64,32 @@ const config = {
         respectPrefersColorScheme: true,
       },
 
-      navbar: {
-        title: 'Scar13t Docs',
-        logo: {
-          alt: 'Scar13t Tech',
-          src: 'img/logo.svg',
-        },
-        items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
-          },
+navbar: {
+  title: 'Scar13t Docs',
+  logo: {
+    alt: 'Scar13t Tech',
+    src: 'img/logo.svg',
+  },
+  items: [
+    {
+      type: 'docSidebar',
+      sidebarId: 'tutorialSidebar',
+      position: 'left',
+      label: 'Docs',
+    },
 
-          {
-            to: '/blog',
-            label: 'Blog',
-            position: 'left',
-          },
+    {
+      type: 'search',
+      position: 'right',
+    },
 
-          {
-            type: 'search',
-            position: 'right',
-          },
-
-          {
-            href: 'https://github.com/scar13t-tech',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
+    {
+      href: 'https://github.com/scar13t-tech',
+      label: 'GitHub',
+      position: 'right',
+    },
+  ],
+},
 
       footer: {
         style: 'dark',

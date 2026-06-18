@@ -2,6 +2,9 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import styles from './index.module.css';
 
+import latestGuides from '../data/latestGuides.json';
+import latestVideos from '../data/latestVideos.json';
+
 const categories = [
   {
     title: 'TrueNAS',
@@ -41,41 +44,16 @@ const categories = [
   },
 ];
 
-const latestGuides = [
-  {
-    title: 'Prowlarr',
-    description: 'Indexer management for Sonarr, Radarr, and other media apps.',
-    link: '/docs/applications/prowlarr',
-  },
-  {
-    title: 'TrueNAS',
-    description: 'Storage, apps, permissions, datasets, and virtualization.',
-    link: '/docs/truenas/intro',
-  },
-  {
-    title: 'Proxmox',
-    description: 'VMs, LXCs, networking, and homelab infrastructure.',
-    link: '/docs/proxmox/intro',
-  },
-];
+function getGuideType(link) {
+  if (link.includes('/applications/')) return 'Applications';
+  if (link.includes('/proxmox/')) return 'Virtualization';
+  if (link.includes('/truenas/')) return 'Storage';
+  if (link.includes('/unraid/')) return 'Storage';
+  if (link.includes('/networking/')) return 'Networking';
+  if (link.includes('/home-assistant/')) return 'Automation';
 
-const latestVideos = [
-  {
-    title: 'Latest Scar13t Tech Video',
-    description: 'Watch the newest homelab guide on YouTube.',
-    link: 'https://youtube.com/@Scar13tTech',
-  },
-  {
-    title: 'TrueNAS Guides',
-    description: 'TrueNAS setup, apps, storage, and troubleshooting.',
-    link: 'https://youtube.com/@Scar13tTech',
-  },
-  {
-    title: 'Homelab Tutorials',
-    description: 'Self-hosting, networking, apps, and automation.',
-    link: 'https://youtube.com/@Scar13tTech',
-  },
-];
+  return 'Guide';
+}
 
 export default function Home() {
   return (
@@ -84,8 +62,6 @@ export default function Home() {
       description="Homelab guides, tutorials, and documentation"
     >
       <main className={styles.homepage}>
-        {/* Hero Section */}
-
         <section className={styles.hero}>
           <h1>Scar13t Tech Docs</h1>
 
@@ -97,7 +73,7 @@ export default function Home() {
           <div className={styles.heroButtons}>
             <Link
               className={`${styles.socialButton} ${styles.youtubeButton}`}
-              href="https://youtube.com/@Scar13tTech"
+              href="https://youtube.com/@Scar13t_Tech"
             >
               <img
                 src="/img/youtube-light.png"
@@ -133,10 +109,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Categories */}
-
         <section className={styles.categories}>
-          <h2>Choose a Platform</h2>
+          <h2>Documentation Categories</h2>
 
           <div className={styles.categoryGrid}>
             {categories.map((category) => (
@@ -159,8 +133,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Latest Content */}
-
         <section className={styles.latestSection}>
           <div className={styles.latestColumn}>
             <h2>Latest Guides</h2>
@@ -168,12 +140,30 @@ export default function Home() {
             <div className={styles.carousel}>
               {latestGuides.map((guide) => (
                 <Link
-                  key={guide.title}
-                  className={styles.latestCard}
+                  key={guide.link}
+                  className={`${styles.latestCard} ${styles.contentCard}`}
                   to={guide.link}
                 >
-                  <h3>{guide.title}</h3>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>{guide.title}</h3>
+
+                    <span className={styles.updatedBadge}>
+                      Updated{' '}
+                      {guide.updated
+                        ? new Date(guide.updated).toLocaleDateString()
+                        : 'Recently'}
+                    </span>
+                  </div>
+
                   <p>{guide.description}</p>
+
+                  <div className={styles.cardFooter}>
+                    <span className={styles.cardType}>
+                      {getGuideType(guide.link)}
+                    </span>
+
+                    <span className={styles.cardArrow}>→</span>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -183,21 +173,47 @@ export default function Home() {
             <h2>Latest Videos</h2>
 
             <div className={styles.carousel}>
-              {latestVideos.map((video) => (
-                <Link
-                  key={video.title}
-                  className={styles.latestCard}
-                  href={video.link}
-                >
-                  <h3>{video.title}</h3>
-                  <p>{video.description}</p>
-                </Link>
-              ))}
+              {latestVideos.length > 0 ? (
+                latestVideos.map((video) => (
+                  <Link
+                    key={video.link}
+                    className={`${styles.latestCard} ${styles.contentCard} ${styles.videoCard}`}
+                    href={video.link}
+                  >
+                    <div className={styles.videoContent}>
+                      <h3>{video.title}</h3>
+
+                      <span className={styles.videoDate}>
+                        {video.published
+                          ? new Date(video.published).toLocaleDateString()
+                          : 'Watch on YouTube'}
+                      </span>
+                    </div>
+
+                    {video.thumbnail && (
+                      <div className={styles.videoThumbnailWrapper}>
+                        <img
+                          src={video.thumbnail}
+                          alt={video.title}
+                          className={styles.videoThumbnail}
+                        />
+                      </div>
+                    )}
+                  </Link>
+                ))
+              ) : (
+                <div className={`${styles.emptyCard} ${styles.contentCard}`}>
+                  <h3>No Videos Yet</h3>
+
+                  <p>
+                    Videos will appear here automatically once they are
+                    published on Scar13t Tech.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </section>
-
-        {/* Ko-fi */}
 
         <section className={styles.donateBox}>
           <h2>Support Scar13t Tech</h2>
@@ -209,7 +225,7 @@ export default function Home() {
 
           <Link
             className={styles.kofiButton}
-            href="https://ko-fi.com/YOURUSERNAME"
+            href="https://ko-fi.com/scar13t"
           >
             Support on Ko-fi
           </Link>

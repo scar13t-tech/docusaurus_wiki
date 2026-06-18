@@ -11,7 +11,11 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "fetch-youtube": "node scripts/fetch-youtube.js",
+    "fetch-guides": "node scripts/fetch-guides.js",
+    "fetch-data": "npm run fetch-youtube && npm run fetch-guides",
+    "prebuild": "npm run fetch-data"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.1",
@@ -20,6 +24,7 @@
     "@easyops-cn/docusaurus-search-local": "^0.55.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "fast-xml-parser": "^5.9.2",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

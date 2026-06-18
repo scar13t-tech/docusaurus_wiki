@@ -1,6 +1,6 @@
 {
   "label": "Proxmox",
-  "position": 3,
+  "position": 2,
   "link": {
     "type": "doc",
     "id": "proxmox/intro"
