@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { XMLParser } = require('fast-xml-parser');
+const {XMLParser} = require('fast-xml-parser');
 
 const FEED_URL =
   'https://www.youtube.com/feeds/videos.xml?playlist_id=UUDdEg4Yi5_ZS1ztxg9P38jA';
@@ -10,7 +10,8 @@ async function main() {
   const response = await fetch(FEED_URL);
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch YouTube feed: ${response.status}`);
+    console.warn(`Warning: Failed to fetch YouTube feed: ${response.status}`);
+    return;
   }
 
   const xml = await response.text();
@@ -28,21 +29,28 @@ async function main() {
       : [data.feed.entry]
     : [];
 
-  const videos = entries.slice(0, 6).map((entry) => {
-    const videoId =
-      entry['yt:videoId'] ||
-      entry.videoId ||
-      entry.id?.replace('yt:video:', '');
+  const videos = entries
+    .slice(0, 6)
+    .map((entry) => {
+      const videoId =
+        entry['yt:videoId'] ||
+        entry.videoId ||
+        entry.id?.replace('yt:video:', '');
 
-    return {
-      title: entry.title,
-      link: `https://www.youtube.com/watch?v=${videoId}`,
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-      published: entry.published,
-    };
-  });
+      if (!videoId) {
+        return null;
+      }
 
-  fs.mkdirSync('./src/data', { recursive: true });
+      return {
+        title: entry.title,
+        link: `https://www.youtube.com/watch?v=${videoId}`,
+        thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+        published: entry.published,
+      };
+    })
+    .filter(Boolean);
+
+  fs.mkdirSync('./src/data', {recursive: true});
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(videos, null, 2));
 
   console.log(`Saved ${videos.length} YouTube videos to ${OUTPUT_FILE}`);
